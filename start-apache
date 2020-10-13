@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+sed -i "s/Listen 80/Listen ${PORT:-80}/g" /etc/apache2/ports.conf
+sed -i "s/:80/:${PORT:-80}/g" /etc/apache2/sites-enabled/*
+sed -i "s/memory_limit=128M/memory_limit=${PHP_MEMORY_LIMIT:-128M}/g" /usr/local/etc/php/conf.d/php-overrides.ini
+apache2-foreground

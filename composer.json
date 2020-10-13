@@ -1,0 +1,6 @@
+{
+    "name": "digitalocean/sample-php",
+    "description": "Sample PHP application for App Platform",
+    "type": "project",
+    "require": {}
+}

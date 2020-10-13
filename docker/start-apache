@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -e
+
+# cat <<EOT >> /etc/apache2/sites-available/000-default.conf
+# <VirtualHost *:${PORT:-80}>
+#   ServerAdmin webmaster@localhost
+#   DocumentRoot /var/www/public
+
+#   <Directory /var/www>
+#     Options Indexes FollowSymLinks
+#     AllowOverride All
+#     Require all granted
+#   </Directory>
+# </VirtualHost>
+# EOT
+
+sed -i "s/Listen 80/Listen ${PORT:-80}/g" /etc/apache2/ports.conf
+sed -i "s/:80/:${PORT:-80}/g" /etc/apache2/sites-enabled/*
+
+echo "memory_limit=${PHP_MEMORY_LIMIT:-128M}" > /usr/local/etc/php/conf.d/overrides.ini
+
+apache2-foreground

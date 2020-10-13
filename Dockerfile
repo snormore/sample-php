@@ -1,8 +1,7 @@
 FROM php:7-apache
 
-COPY 000-default.conf /etc/apache2/sites-available/
-COPY start-apache /usr/local/bin
-COPY php-overrides.ini /usr/local/etc/php/conf.d/
+COPY docker/000-default.conf /etc/apache2/sites-available/
+COPY docker/start-apache /usr/local/bin
 RUN a2enmod rewrite
 
 COPY index.php /var/www/public/
